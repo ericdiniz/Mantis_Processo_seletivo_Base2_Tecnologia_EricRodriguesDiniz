@@ -1,34 +1,24 @@
 package com.mantisTeste;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest
-        extends TestCase {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest(String testName) {
-        super(testName);
-    }
+public class AppTest {
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite() {
-        return new TestSuite(AppTest.class);
-    }
+    @Test
+    public void testGoogleSearch() {
+        // Cria uma instância do HTMLUnitDriver
+        WebDriver driver = new HtmlUnitDriver();
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp() {
-        assertTrue(true);
+        try {
+            driver.get("https://www.google.com");
+            driver.findElement(By.name("q")).sendKeys("Selenium");
+            driver.findElement(By.name("btnK")).click();
+            // Adicione verificações para o seu teste aqui
+        } finally {
+            driver.quit();
+        }
     }
 }
